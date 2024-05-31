@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Good Thymes Virtual Grocery</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+    <body>
+    <div>
+        <h1>Введите данные для добавления файла</h1>
+        <form id="fileForm">
+            <fieldset>
+                <input type="text" name="name" id="name" placeholder="Name" />
+                <input type="text" name="size" id="size" placeholder="Size" />
+                <input type="text" name="folder" id="folder" placeholder="Folder ID" />
+                <input type="button" value="Enter" onclick="submitForm()" />
+            </fieldset>
+        </form>
+    </div>
+    <br><br>
+
+    <script>
+        function submitForm() {
+            var formData = {
+                name: document.getElementById('name').value,
+                size: parseInt(document.getElementById('size').value),
+                folder: {
+                    id: parseInt(document.getElementById('folder').value)
+                }
+            };
+
+            fetch('/file/add', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(formData)
+            })
+                .then(response => {
+                    if (response.redirected) {
+                        window.location.href = response.url;
+                    } else {
+                        return response.json();
+                    }
+                })
+                .then(data => {
+                    console.log('Success:', data);
+                })
+                .catch((error) => {
+                    console.error('Error:', error);
+                });
+        }
+    </script>
+    </body>
+</html>

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Good Thymes Virtual Grocery</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+  <body>
+    <h1>Таблица базы данных папок</h1>
+    <table>
+      <tr>
+        <th>Id</th>
+        <th>Имя</th>
+      </tr>
+      <tr th:each="folder : ${folders}">
+        <td th:text="${folder.id}"></td>
+        <td th:text="${folder.name}"></td>
+      </tr>
+    </table>
+  </body>
+</html>

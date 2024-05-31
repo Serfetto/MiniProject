@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Good Thymes Virtual Grocery</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+  <body>
+    <h1>Таблица базы данных файлов</h1>
+    <table>
+      <tr>
+        <th>Id</th>
+        <th>Имя</th>
+        <th>Размер</th>
+        <th>Папка</th>
+      </tr>
+      <tr th:each="file : ${files}">
+        <td th:text="${file.id}"></td>
+        <td th:text="${file.name}"></td>
+        <td th:text="${file.size}"></td>
+        <td th:text="${file.folder.name}"></td>
+      </tr>
+    </table>
+  </body>
+</html>
